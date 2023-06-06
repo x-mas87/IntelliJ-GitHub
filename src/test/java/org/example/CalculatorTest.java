@@ -1,5 +1,6 @@
 package org.example;
 
+import org.example.calculate.PositiveNumber;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -9,6 +10,7 @@ import org.junit.jupiter.params.provider.MethodSource;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatCode;
 import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 /*
@@ -27,7 +29,7 @@ public class CalculatorTest {
     @MethodSource("formulaAndResult")
     void calculateTest(int operand1, String operator, int operand2, int result) {
         //calculator에게 작업을 위엄함 계산을 해달라고 > Calculator로 이동
-        int calculateResult = Calculator.calculate(operand1, operator, operand2);
+        int calculateResult = Calculator.calculate(new PositiveNumber(operand1), operator, new PositiveNumber(operand2));
 
         assertThat(calculateResult).isEqualTo(result);
     }
